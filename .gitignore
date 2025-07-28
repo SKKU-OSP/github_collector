@@ -1,0 +1,35 @@
+# Python bytecode and cache
+__pycache__/
+**/__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual Environments
+venv/
+env/
+.venv/
+.env/
+ENV/
+
+# Package distribution
+*.egg
+*.egg-info/
+dist/
+build/
+
+# Logs and DB
+*.log
+*.sqlite3
+
+# IDEs and tools
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+
+# Docker volumes (optional)
+db_data/
+
+# env
+.env
