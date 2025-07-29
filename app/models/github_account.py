@@ -15,7 +15,7 @@ class GithubAccount(Base):
     github_id: Mapped[int] = mapped_column(BigInteger, primary_key=True, index=True) # 깃허브에서 제공하는 고유 id
     github_login: Mapped[str] = mapped_column(String(255))
     github_token: Mapped[Optional[str]] = mapped_column(String(255))
-    last_synced_at: Mapped[Optional[datetime]] = mapped_column(DateTime)
+    last_synced_at: Mapped[Optional[datetime]] = mapped_column(DateTime, default=datetime.now())
 
     # 관계 설정: github_account 테이블과 repository 테이블 간의 1:N 관계
     repositories: Mapped[List["Repository"]] = relationship("Repository",
