@@ -36,7 +36,7 @@ class Repository(Base):
     is_private = Column(Boolean, nullable=False)
     
     # 관계 설정: github_account 테이블과 repository 테이블 간의 1:N 관계
-    github_account_id = Column(Integer, ForeignKey("github_account.github_id"), nullable=False)
+    github_account_id = Column(BigInteger, ForeignKey("github_account.github_id"), nullable=False)
     github_account = relationship("GithubAccount", back_populates="repositories")
 
     # 관계 설정: repository 테이블과 commit 테이블 간의 1:N 관계
