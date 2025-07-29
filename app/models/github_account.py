@@ -1,6 +1,6 @@
 from sqlalchemy import Column, BigInteger, String, DateTime
 from sqlalchemy.orm import relationship
-from db import Base
+from app.core.database import Base
 
 class GithubAccount(Base):
     __tablename__ = "github_account"

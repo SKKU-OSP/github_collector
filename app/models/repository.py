@@ -1,12 +1,12 @@
 from sqlalchemy import Column, BigInteger, Integer, String, DateTime, Text, Boolean, ForeignKey, UniqueConstraint
 from sqlalchemy.orm import relationship
-from db import Base
+from app.core.database import Base
 
 class Repository(Base):
     __tablename__ = "repository"
 
     repo_id = Column(BigInteger, primary_key=True, index=True) # 깃허브에서 제공하는 고유 id
-    github_id = Column(BigInteger, nullable=False) # FK
+    github_id = Column(BigInteger, ForeignKey("github_account.github_id"), nullable=False)
     owner_name = Column(String(255), nullable=False)
     repo_name = Column(String(255), nullable=False)
     default_branch = Column(String(255), nullable=False)
@@ -36,7 +36,6 @@ class Repository(Base):
     is_private = Column(Boolean, nullable=False)
     
     # 관계 설정: github_account 테이블과 repository 테이블 간의 1:N 관계
-    github_account_id = Column(BigInteger, ForeignKey("github_account.github_id"), nullable=False)
     github_account = relationship("GithubAccount", back_populates="repositories")
 
     # 관계 설정: repository 테이블과 commit 테이블 간의 1:N 관계
