@@ -15,4 +15,5 @@ class Commit(Base):
     branch = Column(String(255), nullable=False)
 
     # 관계 설정: repository 테이블과 commit 테이블 간의 1:N 관계
+    repo_id = Column(BigInteger, ForeignKey("repository.repo_id"), nullable=False)
     repository = relationship("Repository", back_populates="commits")
