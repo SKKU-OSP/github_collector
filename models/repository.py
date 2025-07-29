@@ -49,6 +49,21 @@ class Repository(Base):
                                 back_populates="repository",
                                 cascade="all, delete-orphan")
 
+    # 관계 설정: repository 테이블과 issue 테이블 간의 1:N 관계
+    issues = relationship("Issue", 
+                         back_populates="repository",
+                         cascade="all, delete-orphan")
+    
+    # 관계 설정: repository 테이블과 star 테이블 간의 1:N 관계
+    stars = relationship("Star", 
+                         back_populates="repository",
+                         cascade="all, delete-orphan")
+    
+    # 관계 설정: repository 테이블과 fork 테이블 간의 1:N 관계
+    forks = relationship("Fork", 
+                         back_populates="repository",
+                         cascade="all, delete-orphan")
+
     # 복합 유니크 키 설정
     __table_args__ = (
         UniqueConstraint("github_id", "owner_name", "repo_name", name="uq_repo_identifier"),

@@ -1,4 +1,4 @@
-from sqlalchemy import Column, BigInteger, Integer, String, DateTime, Text, Boolean, ForeignKey
+from sqlalchemy import Column, BigInteger, Integer, String, DateTime, Text, Boolean, ForeignKey, UniqueConstraint
 from sqlalchemy.orm import relationship
 from db import Base
 
@@ -18,3 +18,8 @@ class PullRequest(Base):
     # 관계 설정: repository 테이블과 pull_request 테이블 간의 1:N 관계
     repo_id = Column(BigInteger, ForeignKey("repository.repo_id"), nullable=False)
     repository = relationship("Repository", back_populates="pull_requests")
+
+    # 복합 유니크 키 설정
+    __table_args__ = (
+        UniqueConstraint("repo_id", "pr_number", name="uq_pr_identifier"),
+    )
