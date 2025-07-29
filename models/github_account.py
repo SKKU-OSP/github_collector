@@ -14,3 +14,11 @@ class GithubAccount(Base):
     repositories = relationship("Repository",
                                 back_populates="github_account",
                                 cascade="all, delete-orphan")
+    
+    # 관계 설정: github_account 테이블과 github_total_data 테이블 간의 1:N 관계
+    github_total_data = relationship("GithubTotalData",
+                                     back_populates="github_account")
+    
+    # 관계 설정: github_account 테이블과 github_score 테이블 간의 1:N 관계
+    github_score = relationship("GithubScore",
+                                back_populates="github_account")
