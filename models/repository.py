@@ -43,6 +43,11 @@ class Repository(Base):
     commits = relationship("Commit", 
                            back_populates="repository",
                            cascade="all, delete-orphan")
+    
+    # 관계 설정: repository 테이블과 pull_request 테이블 간의 1:N 관계
+    pull_requests = relationship("PullRequest", 
+                                back_populates="repository",
+                                cascade="all, delete-orphan")
 
     # 복합 유니크 키 설정
     __table_args__ = (
